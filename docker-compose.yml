@@ -1,27 +1,29 @@
 version: '3'
+
 services:
+  # Servicio del frontend
   front:
     build:
-      context: ./front
+      context: ./front  # Ruta al directorio donde se encuentra el Dockerfile del frontend
     ports:
-      - "4200:4200"
+      - "4200:4200"  # Mapea el puerto 4200 del host al puerto 4200 del contenedor del frontend
     volumes:
-      - ./front:/app
-    command: npm start
+      - ./front:/app  # Monta el directorio local del frontend en el contenedor
+    command: npm start  # Comando para iniciar la aplicación frontend
     networks:
-      - my_network
+      - my_network  # Conexión a la red personalizada my_network
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_USEPOLLING=true  # Variable de entorno específica para la aplicación
 
+  # Servicio del backend
   back:
     build:
-      context: ./back
+      context: ./back  # Ruta al directorio donde se encuentra el Dockerfile del backend
     ports:
-      - "3000:3000"  # Mapea el puerto 3000 del host al puerto 3000 del contenedor del back-end
+      - "3000:3000"  # Mapea el puerto 3000 del host al puerto 3000 del contenedor del backend
     networks:
-      - my_network
+      - my_network  # Conexión a la red personalizada my_network
 
 networks:
   my_network:
-    driver: bridge
-    
+    driver: bridge  # Configuración del controlador de red para la red personalizada my_network

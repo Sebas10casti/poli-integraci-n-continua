@@ -6,7 +6,10 @@ const cors = require('cors');
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('¡Hola, mundo desde Express!111');
+  res.send({
+    nombre: 'Integración continua',
+    personas: ['Sebastian Castiblanco', 'Walter Berrocal', 'Norma Arias', 'Jhon Sarmiento', 'Lore Uribe']
+  });
 });
 
 app.listen(PORT, () => {
