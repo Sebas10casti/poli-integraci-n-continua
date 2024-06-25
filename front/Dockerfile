@@ -1,8 +1,12 @@
 FROM node:18-alpine
 
-# Instala paquetes necesarios para Docker
+# Instala paquetes necesarios para Docker y otras herramientas
 RUN apk update && \
-    apk add docker
+    apk add docker-cli curl
+
+# Instala Docker Compose
+RUN curl -fsSL https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose \
+    && chmod +x /usr/local/bin/docker-compose
 
 # Establece el directorio de trabajo dentro del contenedor en /app
 WORKDIR /app
