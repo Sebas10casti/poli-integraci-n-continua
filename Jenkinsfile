@@ -1,9 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:20.10.8'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+   agent any
+
+    environment {
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;$PATH"
     }
 
     stages {
