@@ -1,5 +1,9 @@
 FROM node:18-alpine
 
+# Instala paquetes necesarios para Docker
+RUN apk update && \
+    apk add docker
+
 # Establece el directorio de trabajo dentro del contenedor en /app
 WORKDIR /app
 

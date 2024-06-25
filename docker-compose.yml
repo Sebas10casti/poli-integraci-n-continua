@@ -9,11 +9,11 @@ services:
       - "4200:4200"  # Mapea el puerto 4200 del host al puerto 4200 del contenedor del frontend
     volumes:
       - ./front:/app  # Monta el directorio local del frontend en el contenedor
-    command: npm start  # Comando para iniciar la aplicación frontend
-    networks:
-      - my_network  # Conexión a la red personalizada my_network
     environment:
       - CHOKIDAR_USEPOLLING=true  # Variable de entorno específica para la aplicación
+    networks:
+      - my_network  # Conexión a la red personalizada my_network
+    command: npm start  # Comando para iniciar la aplicación frontend
 
   # Servicio del backend
   back:
@@ -23,6 +23,13 @@ services:
       - "3000:3000"  # Mapea el puerto 3000 del host al puerto 3000 del contenedor del backend
     networks:
       - my_network  # Conexión a la red personalizada my_network
+
+  # Nuevo servicio para ejecutar contenedores
+  run:
+    image: docker:20.10.8
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: sh -c "docker-compose -f docker-compose.yml up -d"
 
 networks:
   my_network:
