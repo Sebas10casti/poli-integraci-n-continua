@@ -37,10 +37,8 @@ pipeline {
 
     post {
         always {
-            steps {
-                // Detener y eliminar los contenedores después de la ejecución
-                sh 'docker-compose -f docker-compose.yml down'
-            }
+            // Detener y eliminar los contenedores después de la ejecución
+            sh 'docker-compose -f docker-compose.yml down'
         }
     }
 }
