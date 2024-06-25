@@ -1,6 +1,11 @@
 pipeline {
-    agent any
-
+   agent {
+        docker {
+            image 'docker:20.10.8'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    
     stages {
         stage('Checkout') {
             steps {
