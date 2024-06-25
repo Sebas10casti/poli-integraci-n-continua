@@ -1,8 +1,9 @@
 pipeline {
-   agent any
-
-    environment {
-        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;$PATH"
+    agent {
+        docker {
+            image 'docker:20.10.8'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
     }
 
     stages {
@@ -41,10 +42,8 @@ pipeline {
 
     post {
         always {
-            steps {
-                // Detener y eliminar los contenedores después de la ejecución
-                sh 'docker-compose -f docker-compose.yml down'
-            }
+            // Detener y eliminar los contenedores después de la ejecución
+            sh 'docker-compose -f docker-compose.yml down'
         }
     }
 }
