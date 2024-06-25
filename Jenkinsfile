@@ -33,15 +33,6 @@ pipeline {
                 sh 'docker-compose -f docker-compose.yml up -d'
             }
         }
-
-        stage('Post Actions') {
-            steps {
-                // Aquí puedes agregar pasos adicionales como pruebas, despliegue, etc.
-                // Por ejemplo, para ejecutar pruebas:
-                // sh 'docker exec -t <frontend-container-id> npm test'
-                // sh 'docker exec -t <backend-container-id> npm test'
-            }
-        }
     }
 
     post {
